@@ -148,31 +148,17 @@ const App = () => {
         <Box sx={{ position: "absolute", top: 20, right: 20, zIndex: 1000 }}>
           <ThemeToggle mode={mode} toggleTheme={toggleTheme} />
         </Box>
-        <Container maxWidth="lg" sx={{ py: 8 }}>
-          <Box sx={{ mb: 8 }}>
-            <Typography
-              variant="h4"
-              align="center"
-              sx={{
-                mb: 2,
-                background: mode === "light"
-                  ? "linear-gradient(135deg, #2563eb 0%, #10b981 100%)"
-                  : "linear-gradient(135deg, #60a5fa 0%, #34d399 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              User Directory
-            </Typography>
-            <Typography
-              variant="body2"
-              align="center"
-              sx={{ color: "text.secondary" }}
-            >
-              Discover and connect with our community members
-            </Typography>
-          </Box>
+        <Container maxWidth="lg" sx={{ py: 8, position: "relative", zIndex: 1 }}>
+          {/* decorative blurred blobs */}
+          <div className="decor-bg" style={{ width: 260, height: 260, left: -80, top: -40, background: "radial-gradient(circle at 30% 30%, #ffb86b, transparent 40%)" }} />
+          <div className="decor-bg" style={{ width: 340, height: 340, right: -120, bottom: -80, background: "radial-gradient(circle at 70% 70%, #8a67e6, transparent 40%)" }} />
+
+          <Typography variant="h4" align="center" gutterBottom className="title-gradient">
+            User Directory
+          </Typography>
+          <Typography variant="subtitle1" align="center" sx={{ color: "text.secondary", mb: 3 }}>
+            Browse and search sample users — polished with subtle animations and theme support.
+          </Typography>
           <SearchBar search={search} setSearch={setSearch} />
 
           {loading ? (
@@ -184,13 +170,28 @@ const App = () => {
               {error}
             </Typography>
           ) : (
-            <Grid container spacing={3} justifyContent="center">
-              {filteredUsers.map((user) => (
-                <Grid item key={user.id} xs={12} sm={6} md={4}>
-                  <UserCard user={user} />
-                </Grid>
-              ))}
-            </Grid>
+            filteredUsers.length === 0 ? (
+              <Box className="no-results">
+                <svg width="160" height="120" viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <rect x="0" y="0" width="160" height="120" rx="12" fill="rgba(255,255,255,0.05)" />
+                  <g transform="translate(20,20)" fill="rgba(255,255,255,0.85)">
+                    <circle cx="20" cy="20" r="18" fill="#667eea" />
+                    <rect x="48" y="6" width="72" height="10" rx="4" />
+                    <rect x="48" y="28" width="52" height="8" rx="4" />
+                  </g>
+                </svg>
+                <Typography variant="h6" sx={{ mt: 2 }}>No users found</Typography>
+                <Typography variant="body2" sx={{ mt: 1, color: "text.secondary" }}>Try a different name or clear the search.</Typography>
+              </Box>
+            ) : (
+              <Grid container spacing={3} justifyContent="center">
+                {filteredUsers.map((user) => (
+                  <Grid item key={user.id} xs={12} sm={6} md={4}>
+                    <UserCard user={user} />
+                  </Grid>
+                ))}
+              </Grid>
+            )
           )}
         </Container>
       </div>
