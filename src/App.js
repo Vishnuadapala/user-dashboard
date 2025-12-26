@@ -35,19 +35,32 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
-      .then((data) => {
+    const fetchUsers = async () => {
+      try {
+        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+        const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+        const response = await fetch(
+          `${supabaseUrl}/functions/v1/get-users`,
+          {
+            headers: {
+              Authorization: `Bearer ${anonKey}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) throw new Error("Network response was not ok");
+        const data = await response.json();
         setUsers(data);
         setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         setError("Failed to fetch user data.");
         setLoading(false);
-      });
+      }
+    };
+
+    fetchUsers();
   }, []);
 
   const filteredUsers = users.filter((user) =>
