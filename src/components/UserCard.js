@@ -5,25 +5,29 @@ import { Email, Phone, LocationOn, Business } from "@mui/icons-material";
 const UserCard = ({ user }) => {
   return (
     <Card
+      className="user-card"
       sx={{
         borderRadius: 3,
         boxShadow: 3,
-        "&:hover": { boxShadow: 6, transform: "scale(1.05)" },
-        transition: "0.3s",
-        background: "rgba(255, 255, 255, 0.95)",
-        backdropFilter: "blur(10px)",
-        border: "1px solid rgba(255, 255, 255, 0.2)",
+        "&:hover": { boxShadow: 8, transform: "translateY(-6px) scale(1.02)" },
+        transition: "transform 240ms ease, box-shadow 240ms ease",
+        backgroundColor: (theme) => (theme.palette.mode === "dark" ? "rgba(255,255,255,0.04)" : "rgba(255, 255, 255, 0.95)"),
+        backdropFilter: "blur(8px)",
+        border: (theme) => (theme.palette.mode === "dark" ? "1px solid rgba(255,255,255,0.06)" : "1px solid rgba(255, 255, 255, 0.2)"),
       }}
     >
       <CardContent sx={{ textAlign: "center" }}>
         <Avatar
           sx={{
-            width: 80,
-            height: 80,
+            width: 88,
+            height: 88,
             mx: "auto",
             mb: 2,
-            bgcolor: "#667eea",
+            bgcolor: "transparent",
+            backgroundImage: "linear-gradient(135deg,#667eea,#764ba2)",
+            color: "#fff",
             fontSize: "2rem",
+            boxShadow: 2,
           }}
         >
           {user.name.charAt(0)}
