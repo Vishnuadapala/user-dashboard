@@ -15,17 +15,92 @@ const App = () => {
   const theme = createTheme({
     palette: {
       mode,
-      ...(mode === "dark" && {
+      primary: {
+        main: "#2563eb",
+        light: "#60a5fa",
+        dark: "#1e40af",
+      },
+      secondary: {
+        main: "#10b981",
+        light: "#34d399",
+        dark: "#059669",
+      },
+      success: {
+        main: "#10b981",
+      },
+      warning: {
+        main: "#f59e0b",
+      },
+      error: {
+        main: "#ef4444",
+      },
+      ...(mode === "light" && {
         background: {
-          default: "#121212",
-          paper: "#1e1e1e",
+          default: "#f8fafc",
+          paper: "#ffffff",
         },
         text: {
-          primary: "#ffffff",
-          secondary: "#b0b0b0",
+          primary: "#1e293b",
+          secondary: "#64748b",
+        },
+      }),
+      ...(mode === "dark" && {
+        background: {
+          default: "#0f172a",
+          paper: "#1e293b",
+        },
+        text: {
+          primary: "#f1f5f9",
+          secondary: "#cbd5e1",
         },
       }),
     },
+    typography: {
+      fontFamily: '"Inter", "Segoe UI", "Roboto", sans-serif',
+      h4: {
+        fontWeight: 700,
+        letterSpacing: "-0.02em",
+        lineHeight: 1.2,
+      },
+      h6: {
+        fontWeight: 600,
+        letterSpacing: "-0.01em",
+      },
+      body2: {
+        lineHeight: 1.5,
+      },
+    },
+    shape: {
+      borderRadius: 12,
+    },
+    shadows: [
+      "none",
+      "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+      "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+      "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+      "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+      "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+      "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+    ],
   });
 
   const toggleTheme = () => {
@@ -70,13 +145,34 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <div data-theme={mode}>
-        <Box sx={{ position: "absolute", top: 16, right: 16, zIndex: 1000 }}>
+        <Box sx={{ position: "absolute", top: 20, right: 20, zIndex: 1000 }}>
           <ThemeToggle mode={mode} toggleTheme={toggleTheme} />
         </Box>
-        <Container sx={{ py: 5 }}>
-          <Typography variant="h4" align="center" gutterBottom>
-            User Directory
-          </Typography>
+        <Container maxWidth="lg" sx={{ py: 8 }}>
+          <Box sx={{ mb: 8 }}>
+            <Typography
+              variant="h4"
+              align="center"
+              sx={{
+                mb: 2,
+                background: mode === "light"
+                  ? "linear-gradient(135deg, #2563eb 0%, #10b981 100%)"
+                  : "linear-gradient(135deg, #60a5fa 0%, #34d399 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              User Directory
+            </Typography>
+            <Typography
+              variant="body2"
+              align="center"
+              sx={{ color: "text.secondary" }}
+            >
+              Discover and connect with our community members
+            </Typography>
+          </Box>
           <SearchBar search={search} setSearch={setSearch} />
 
           {loading ? (

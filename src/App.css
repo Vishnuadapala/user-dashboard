@@ -1,55 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  transition: background 0.3s ease;
+  transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body[data-theme="light"] {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 body[data-theme="dark"] {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1a1f35 100%);
 }
 
 .MuiCard-root {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
 }
 
-.MuiTypography-h4 {
-  color: #ff9800;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+body[data-theme="light"] .MuiCard-root {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="dark"] .MuiCard-root {
+  background: #1e293b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15) !important;
 }
 
 .MuiTextField-root .MuiOutlinedInput-root {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 25px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+body[data-theme="light"] .MuiTextField-root .MuiOutlinedInput-root {
+  background: #f1f5f9;
+}
+
+body[data-theme="dark"] .MuiTextField-root .MuiOutlinedInput-root {
+  background: #0f172a;
 }
 
 .MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-  border-color: #667eea;
+  border-color: #2563eb;
+  border-width: 2px;
 }
 
 .MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #764ba2;
+  border-color: #2563eb;
+  border-width: 2px;
 }
 
-/* Custom Spinner Animation */
+.MuiInputLabel-root {
+  font-size: 0.9rem;
+}
+
+.MuiIconButton-root {
+  transition: all 0.2s ease;
+}
+
+.MuiIconButton-root:hover {
+  transform: scale(1.1);
+}
+
 .custom-spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid rgba(255, 255, 255, 0.3);
-  border-top: 6px solid #667eea;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(37, 99, 235, 0.2);
+  border-top: 3px solid #2563eb;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: auto;
+  animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.MuiGrid-root > .MuiGrid-item {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.MuiGrid-item:nth-child(1) { animation-delay: 0.05s; }
+.MuiGrid-item:nth-child(2) { animation-delay: 0.1s; }
+.MuiGrid-item:nth-child(3) { animation-delay: 0.15s; }
+.MuiGrid-item:nth-child(4) { animation-delay: 0.2s; }
+.MuiGrid-item:nth-child(5) { animation-delay: 0.25s; }
+.MuiGrid-item:nth-child(n+6) { animation-delay: 0.3s; }
