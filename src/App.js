@@ -159,19 +159,6 @@ const App = () => {
           <Typography variant="subtitle1" align="center" sx={{ color: "text.secondary", mb: 3 }}>
             Browse and search sample users — polished with subtle animations and theme support.
           </Typography>
-          
-        <Container sx={{ py: 5, position: "relative", zIndex: 1 }}>
-          {/* decorative blurred blobs */}
-          <div className="decor-bg" style={{ width: 260, height: 260, left: -80, top: -40, background: "radial-gradient(circle at 30% 30%, #ffb86b, transparent 40%)" }} />
-          <div className="decor-bg" style={{ width: 340, height: 340, right: -120, bottom: -80, background: "radial-gradient(circle at 70% 70%, #8a67e6, transparent 40%)" }} />
-
-          <Typography variant="h4" align="center" gutterBottom className="title-gradient">
-            User Directory
-          </Typography>
-          <Typography variant="subtitle1" align="center" sx={{ color: "text.secondary", mb: 3 }}>
-            Browse and search sample users — polished with subtle animations and theme support.
-          </Typography>
->>>>>>> feature/ui-polish
           <SearchBar search={search} setSearch={setSearch} />
 
           {loading ? (
