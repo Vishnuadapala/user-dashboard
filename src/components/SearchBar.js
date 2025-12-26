@@ -11,12 +11,13 @@ const SearchBar = ({ search, setSearch }) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         sx={{
-          width: "100%",
+          width: { xs: "90%", md: "60%" },
           maxWidth: 500,
+          boxShadow: (theme) => theme.palette.mode === 'dark' ? '0 6px 20px rgba(0,0,0,0.5)' : '0 8px 30px rgba(102,126,234,0.12)',
+          borderRadius: 3,
           "& .MuiOutlinedInput-root": {
-            borderRadius: 2,
-            transition: "all 0.2s ease",
-            fontSize: "0.95rem",
+            borderRadius: 25,
+            background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(255, 255, 255, 0.92)',
             "& fieldset": {
               borderColor: "rgba(0, 0, 0, 0.08)",
               transition: "border-color 0.2s ease",
@@ -26,10 +27,12 @@ const SearchBar = ({ search, setSearch }) => {
               borderWidth: 2,
             },
             "&.Mui-focused fieldset": {
-              borderColor: "#2563eb",
-              borderWidth: 2,
-              boxShadow: "0 0 0 3px rgba(37, 99, 235, 0.1)",
+              borderColor: "#764ba2",
+              boxShadow: '0 6px 20px rgba(118,75,162,0.12)'
             },
+            "& input::placeholder": {
+              color: 'rgba(0,0,0,0.4)'
+            }
           },
           "& .MuiInputLabel-root": {
             transition: "all 0.2s ease",
